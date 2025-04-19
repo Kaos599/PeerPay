@@ -1,4 +1,4 @@
-# PeerPay - Blockchain Frontend
+# PeerPay - Blockchain Transactions
 
 This project is a modern React frontend application designed to interact with and visualize a blockchain. It allows users to view existing blocks and add new transactions.
 
