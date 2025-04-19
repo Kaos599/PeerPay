@@ -1,0 +1,244 @@
+/* client/src/components/expenses/ExpenseItem.css */
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  gap: 10px; /* Add gap between wrapped items */
+}
+
+.expense-item__main {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between date, description, category */
+    flex-grow: 1; /* Allow this section to grow */
+    flex-basis: 300px; /* Minimum base width before wrapping */
+    flex-wrap: wrap; /* Allow inner items to wrap if needed */
+}
+
+.expense-item__date {
+  font-size: 0.9em;
+  color: #666;
+  background-color: #f0f0f0;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap; /* Prevent date from breaking */
+}
+
+.expense-item__description {
+  font-weight: 600;
+  color: #333;
+  flex-grow: 1; /* Allow description to take available space */
+}
+
+.expense-item__vendor {
+    font-weight: normal;
+    font-size: 0.9em;
+    color: #777;
+    margin-left: 5px;
+}
+
+.expense-item__category {
+  font-size: 0.85em;
+  color: #007bff;
+  background-color: #e7f3ff;
+  padding: 3px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+  border: 1px solid #cce5ff;
+}
+
+.expense-item__amount {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #dc3545; /* Red color for expense amount */
+  margin-left: auto; /* Push amount and actions to the right */
+  padding-left: 15px; /* Space before amount */
+  flex-shrink: 0; /* Prevent amount from shrinking too much */
+}
+
+.expense-item__actions {
+  display: flex;
+  gap: 8px; /* Space between buttons */
+  flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+.expense-item__actions button {
+  padding: 5px 10px;
+  font-size: 0.8em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.expense-item__actions .edit-btn {
+  background-color: #ffc107; /* Yellow */
+  color: #333;
+}
+.expense-item__actions .edit-btn:hover {
+  background-color: #e0a800;
+}
+
+.expense-item__actions .delete-btn {
+  background-color: #dc3545; /* Red */
+  color: white;
+}
+.expense-item__actions .delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* Optional: Responsive adjustments */
+@media (max-width: 600px) {
+    .expense-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .expense-item__main {
+        flex-basis: auto; /* Reset basis */
+        width: 100%;
+        margin-bottom: 10px;
+    }
+     .expense-item__amount {
+        margin-left: 0; /* Reset margin */
+        padding-left: 0;
+        width: 100%;
+        text-align: right;
+         margin-bottom: 10px;
+    }
+    .expense-item__actions {
+        width: 100%;
+        justify-content: flex-end; /* Align actions to the right */
+    }
+}
+/* client/src/components/expenses/ExpenseItem.css */
+/* ... (previous styles) ... */
+
+.expense-item__project {
+  font-size: 0.8em;
+  color: #6c757d; /* Gray */
+  background-color: #e9ecef;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+  font-weight: normal;
+}
+
+.expense-item__reimbursable {
+   font-size: 0.8em;
+   color: #17a2b8; /* Info blue */
+   font-weight: bold;
+   border: 1px solid #17a2b8;
+   padding: 2px 6px;
+   border-radius: 4px;
+   margin: 0 10px; /* Add some margin */
+   white-space: nowrap;
+}
+
+/* Adjust layout for new elements if needed in media queries */
+
+/* client/src/components/expenses/ExpenseItem.css */
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 12px; /* Slightly more space */
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  gap: 10px;
+  transition: background-color 0.2s ease; /* Add transition for hover */
+  position: relative; /* Needed for potential absolute elements later */
+  overflow: hidden; /* Clip content during animations */
+}
+
+/* Add hover effect (alternative to framer motion if preferred) */
+/* .expense-item:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+} */
+
+
+.expense-item__main { /* ... same styles ... */
+    display: flex; align-items: center; gap: 15px; flex-grow: 1; flex-basis: 300px; flex-wrap: wrap;
+}
+.expense-item__date { /* ... same styles ... */
+    font-size: 0.9em; color: #666; background-color: #f0f0f0; padding: 3px 8px; border-radius: 4px; white-space: nowrap;
+}
+.expense-item__description { /* ... same styles ... */
+    font-weight: 600; color: #333; flex-grow: 1;
+}
+.expense-item__vendor { /* ... same styles ... */
+    font-weight: normal; font-size: 0.9em; color: #777; margin-left: 5px;
+}
+.expense-item__category { /* ... same styles ... */
+    font-size: 0.85em; color: var(--primary-color); background-color: #eef2ff; padding: 3px 10px; border-radius: 12px; white-space: nowrap; border: 1px solid #c7d2fe; font-weight: 500;
+}
+
+.expense-item__project {
+    font-size: 0.9em; /* Adjust icon size via font-size */
+    color: var(--text-muted);
+    margin-left: 8px;
+    cursor: help; /* Indicate tooltip/hover */
+    vertical-align: middle; /* Align icon nicely */
+}
+.expense-item__project svg { vertical-align: middle; }
+
+
+.expense-item__reimbursable { /* ... same styles ... */
+    font-size: 0.8em; color: #17a2b8; font-weight: bold; border: 1px solid #17a2b8; padding: 2px 6px; border-radius: 4px; margin: 0 10px; white-space: nowrap;
+}
+
+.expense-item__amount { /* ... same styles ... */
+  font-size: 1.1em; font-weight: bold; color: var(--error-color); margin-left: auto; padding-left: 15px; flex-shrink: 0;
+}
+
+
+.expense-item__actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  align-items: center; /* Align buttons vertically */
+}
+
+/* Style for Icon Buttons */
+.expense-item__actions .action-btn {
+  background: none;
+  border: none;
+  padding: 6px; /* Adjust padding for icons */
+  font-size: 1rem; /* Control icon size */
+  border-radius: 50%; /* Make circular */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  width: 30px; /* Fixed width */
+  height: 30px; /* Fixed height */
+}
+.expense-item__actions .action-btn svg {
+    display: block; /* Ensure icon fills button */
+}
+
+.expense-item__actions .action-btn.edit-btn { color: var(--accent-color); }
+.expense-item__actions .action-btn.edit-btn:hover { background-color: rgba(245, 158, 11, 0.1); } /* Light amber bg */
+
+.expense-item__actions .action-btn.delete-btn { color: var(--error-color); }
+.expense-item__actions .action-btn.delete-btn:hover { background-color: rgba(239, 68, 68, 0.1); } /* Light red bg */
+
+.expense-item__actions .action-btn.receipt-btn { color: var(--secondary-color); text-decoration: none; }
+.expense-item__actions .action-btn.receipt-btn:hover { background-color: rgba(16, 185, 129, 0.1); } /* Light green bg */
+
+
+/* Responsive adjustments from before */
+@media (max-width: 600px) { /* ... keep previous responsive styles ... */ }
