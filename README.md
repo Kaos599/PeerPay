@@ -1,137 +1,104 @@
-# Personal Expense Tracker App (MERN Stack)
+# PeerPay - Blockchain Frontend
 
-
-A comprehensive MERN stack application designed to help users manage their personal finances efficiently by tracking expenses, setting budgets, analyzing spending patterns, and receiving budget alerts.
-
-## Screenshots
-
-
-**Login/Register Page:**
-![image](https://github.com/user-attachments/assets/a5368bb7-7d0b-47d3-ae46-a3e27be1e4ab)
-![image](https://github.com/user-attachments/assets/304e9352-2e7c-4173-b866-36beced8c96f)
-
-
-
-**Dashboard:**
-![image](https://github.com/user-attachments/assets/2e80b3bf-2e1f-48a8-bcb5-4b945621c938)
-
-
-**Budget Management Page:**
-![image](https://github.com/user-attachments/assets/21359e47-7eab-414d-9954-f490f328e518)
-
-
-**Reports Page:**
-![image](https://github.com/user-attachments/assets/18ad62b6-186c-4944-b6b7-4732ac821992)
-
+This project is a modern React frontend application designed to interact with and visualize a blockchain. It allows users to view existing blocks and add new transactions.
 
 ## Features
 
-*   **User Authentication:** Secure registration and login using JWT (JSON Web Tokens) and password hashing (bcryptjs).
-*   **Expense Management:**
-    *   Add, view, edit, and delete expenses.
-    *   Categorize expenses using a predefined and customizable list.
-    *   Include details like date, amount (INR formatted), description, vendor, notes, payment method.
-    *   Optional fields for basic project tracking.
-    *   Visual indicator for "Reimbursable" expenses.
-    *   (Visual input for receipt links - upload not implemented).
-*   **Budget Management:**
-    *   Set monthly, quarterly, yearly, or weekly budgets per category.
-    *   View current spending against budget limits.
-    *   Visual progress bars for budget utilization.
-    *   Edit and delete existing budgets.
-*   **Reporting & Analysis:**
-    *   Generate reports filtered by period (Month, Quarter, Year).
-    *   View spending breakdown by category (Doughnut Chart).
-    *   View Budget vs. Actual spending table, highlighting overspending.
-*   **Notifications:**
-    *   Backend logic triggers alerts when spending approaches (e.g., 80%) or exceeds budget limits.
-    *   Frontend notification bell displaying unread count (via polling).
-    *   Dropdown list to view and mark notifications as read.
-*   **User Interface:**
-    *   Clean, responsive design.
-    *   Animated transitions and interactions using Framer Motion.
-    *   Iconography using React Icons.
-    *   Consistent color scheme via CSS Variables.
-*   **Currency:** All financial values are handled and displayed in Indian Rupees (INR).
+*   **View Blocks:** Displays a list of blockchain blocks with details like timestamp, hash, and transaction count.
+*   **Add Transactions:** A form to submit new transactions (sender, recipient, amount) to be mined.
+*   **Real-time Updates:** Block list automatically polls for new blocks.
+*   **Form Validation:** Transaction form uses Zod for robust validation.
+*   **User Feedback:** Toast notifications for transaction mining success or failure.
+*   **Modern UI:** Built with Chakra UI for a responsive and accessible design.
+*   **Light/Dark Mode:** Theme toggling support.
+*   **Animations:** Subtle animations using Framer Motion.
 
 ## Tech Stack
 
-*   **Frontend:**
-    *   React.js
-    *   React Router DOM (v6)
-    *   Axios (for API calls)
-    *   Framer Motion (for animations)
-    *   React Icons
-    *   Chart.js & react-chartjs-2 (for charts)
-    *   CSS3 (with CSS Variables)
-*   **Backend:**
-    *   Node.js
-    *   Express.js
-    *   Mongoose (ODM for MongoDB)
-    *   MongoDB (Database)
-    *   JSON Web Token (JWT for authentication)
-    *   bcryptjs (for password hashing)
-    *   Cors (for enabling cross-origin requests)
-    *   Dotenv (for environment variables)
-*   **Database:**
-    *   MongoDB (Cloud Atlas recommended or local instance)
+*   **Framework:** React 18+
+*   **Build Tool:** Vite
+*   **UI Library:** Chakra UI
+*   **State Management/Data Fetching:** TanStack Query (React Query) v5
+*   **Form Handling:** React Hook Form
+*   **Schema Validation:** Zod
+*   **Animation:** Framer Motion
+*   **Icons:** Lucide React
+*   **Styling:** Emotion (via Chakra UI)
 
-## Prerequisites
+## Project Structure (Frontend)
 
-Before you begin, ensure you have the following installed:
-
-*   **Node.js & npm:** Download and install from [nodejs.org](https://nodejs.org/) (LTS version recommended).
-*   **MongoDB:**
-    *   Set up a cluster on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) (free tier available), OR
-    *   Install MongoDB Community Edition locally from [mongodb.com](https://www.mongodb.com/try/download/community).
-*   **Git:** (Optional, for cloning) Download from [git-scm.com](https://git-scm.com/).
-*   **Code Editor:** Such as Visual Studio Code.
+```
+frontend/
+├── public/            # Static assets
+├── src/
+│   ├── components/    # Reusable React components (Header, Footer, BlockCard, etc.)
+│   ├── hooks/         # Custom React hooks (e.g., useBlocks)
+│   ├── services/      # API interaction logic (e.g., blockchain.js)
+│   ├── styles/        # Global styles or theme overrides (if needed)
+│   ├── App.jsx        # Main application component
+│   └── main.jsx       # Application entry point
+├── .eslintrc.cjs    # ESLint configuration
+├── .gitignore       # Git ignore file
+├── index.html       # Main HTML template
+├── package.json     # Project dependencies and scripts
+├── vite.config.js   # Vite configuration
+└── README.md        # This README file
+```
 
 ## Getting Started
 
-Follow these steps to set up and run the project locally:
+### Prerequisites
 
-1.  **Clone the Repository:**
+*   Node.js (v18 or later recommended)
+*   npm, yarn, or pnpm
+
+### Installation
+
+1.  Navigate to the frontend directory:
     ```bash
-    git clone <your-repository-url> expense-tracker-app
-    cd expense-tracker-app
+    cd frontend
     ```
-    (Or download the ZIP and extract it)
+2.  Install dependencies:
+    ```bash
+    npm install
+    # or
+    # yarn install
+    # or
+    # pnpm install
+    ```
 
-2.  **Set Up Backend (`server` directory):**
-    *   Navigate to the server directory:
-        ```bash
-        cd server
-        ```
-    *   Install dependencies:
-        ```bash
-        npm install
-        ```
-    *   Create the environment variables file:
-        *   Create a file named `.env` in the `server` directory.
-        *   Add the necessary environment variables (see section below).
+### Running the Development Server
 
-3.  **Set Up Frontend (`client` directory):**
-    *   Navigate to the client directory (from the root `expense-tracker-app` folder):
-        ```bash
-        cd ../client
-        # Or if you are in server/: cd ../client
-        ```
-    *   Install dependencies:
-        ```bash
-        npm install
-        ```
+```bash
+npm run dev
+# or
+# yarn dev
+# or
+# pnpm dev
+```
 
-## Environment Variables
+This will start the Vite development server, typically available at `http://localhost:5173`.
 
-Create a `.env` file in the `server` directory and add the following variables, replacing the placeholder values:
+### Building for Production
 
-```dotenv
-# MongoDB Connection String (replace with your actual connection string)
-MONGO_URI=mongodb+srv://<your_username>:<your_password>@<your_cluster_url>/<your_database_name>?retryWrites=true&w=majority
+```bash
+npm run build
+# or
+# yarn build
+# or
+# pnpm build
+```
 
-# JWT Secret Key (Choose a strong, random string)
-JWT_SECRET=YOUR_VERY_SECRET_RANDOM_STRING_REPLACE_THIS
+This command bundles the application into the `frontend/dist` directory, optimized for deployment.
 
-# Port for the backend server (optional, defaults to 5001 if not set)
-PORT=5001
+## Backend Requirement
+
+This frontend application expects a backend service to provide blockchain data and handle transaction submissions. The API endpoints are currently configured in `frontend/src/services/blockchain.js`. Ensure a compatible backend is running and accessible.
+
+## Author
+
+*   Harsh Dayal (22BCE10564)
+
+## License
+
+This project is currently unlicensed. Consider adding an open-source license like MIT if you plan to share it. 
