@@ -1,28 +1,84 @@
-import React from 'react';
-import { Flex, Container, Box, useColorMode } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import {
+  ChakraProvider,
+  Box,
+  VStack,
+  extendTheme,
+  Container,
+  Flex,
+  Button,
+  useColorModeValue,
+} from '@chakra-ui/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import TransactionForm from './components/TransactionForm';
 import BlockList from './components/BlockList';
+import TransactionForm from './components/TransactionForm';
+import TransactionHistoryPage from './components/TransactionHistoryPage';
+import { Toaster } from 'react-hot-toast';
+
+const theme = extendTheme({
+  // Add custom theme configurations here
+});
+
+const queryClient = new QueryClient();
 
 function App() {
-  const { colorMode } = useColorMode();
+  const [currentView, setCurrentView] = useState('blocks');
+
+  const navButtonBg = useColorModeValue('gray.100', 'gray.700');
+  const navButtonActiveBg = useColorModeValue('blue.500', 'blue.300');
+  const navButtonActiveColor = useColorModeValue('white', 'gray.900');
 
   return (
-    <Flex direction="column" minH="100vh" bg={colorMode === 'dark' ? 'gray.800' : 'gray.50'}>
-      <Header />
-      <Container as="main" flex="1" py={8} maxW="7xl">
-        <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
-          <Box flex="1">
-            <TransactionForm />
-          </Box>
-          <Box flex="2">
-            <BlockList />
-          </Box>
-        </Flex>
-      </Container>
-      <Footer />
-    </Flex>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <Toaster position="bottom-right" />
+        <Box textAlign="center" fontSize="xl">
+          <VStack minH="100vh" spacing={8}>
+            <Header />
+            <Container maxW="container.xl" flexGrow={1}>
+              <Flex justify="center" mb={6} gap={4}>
+                <Button
+                  onClick={() => setCurrentView('blocks')}
+                  isActive={currentView === 'blocks'}
+                  bg={currentView === 'blocks' ? navButtonActiveBg : navButtonBg}
+                  color={currentView === 'blocks' ? navButtonActiveColor : 'inherit'}
+                  _hover={{
+                    bg: currentView === 'blocks' ? navButtonActiveBg : useColorModeValue('gray.200', 'gray.600'),
+                  }}
+                >
+                  Blocks & Add Transaction
+                </Button>
+                <Button
+                  onClick={() => setCurrentView('history')}
+                  isActive={currentView === 'history'}
+                  bg={currentView === 'history' ? navButtonActiveBg : navButtonBg}
+                  color={currentView === 'history' ? navButtonActiveColor : 'inherit'}
+                  _hover={{
+                    bg: currentView === 'history' ? navButtonActiveBg : useColorModeValue('gray.200', 'gray.600'),
+                  }}
+                >
+                  Transaction History
+                </Button>
+              </Flex>
+
+              {currentView === 'blocks' && (
+                <VStack spacing={8} align="stretch">
+                  <TransactionForm />
+                  <BlockList />
+                </VStack>
+              )}
+
+              {currentView === 'history' && <TransactionHistoryPage />}
+            </Container>
+            <Footer />
+          </VStack>
+        </Box>
+      </ChakraProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
