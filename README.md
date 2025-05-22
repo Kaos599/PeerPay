@@ -2,7 +2,7 @@
 
 This project is a modern React frontend application designed to interact with and visualize a blockchain. It allows users to view existing blocks and add new transactions.
 
-## Features
+## Features 
 
 *   **View Blocks:** Displays a list of blockchain blocks with details like timestamp, hash, and transaction count.
 *   **Add Transactions:** A form to submit new transactions (sender, recipient, amount) to be mined.
